@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.latte_core" />
+    package="com.example.latte_core" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!--原视频这里还有一些内容，看5-4发现的-->
+</manifest>
