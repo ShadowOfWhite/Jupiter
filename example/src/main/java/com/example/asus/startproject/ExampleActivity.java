@@ -8,7 +8,7 @@ import com.example.latte_core.delegates.LatteDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
-
+//新增了一句注释
 
     @Override
     public LatteDelegate setRootDelegate() {
