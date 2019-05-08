@@ -15,7 +15,7 @@ import me.yokeyword.fragmentation.SupportActivity;
  * Describe：
  */
 
-public abstract class ProxyActivity extends SupportActivity {
+public abstract class  ProxyActivity extends SupportActivity {
 
     public abstract LatteDelegate setRootDelegate();
 

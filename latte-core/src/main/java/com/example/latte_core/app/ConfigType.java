@@ -6,7 +6,7 @@ package com.example.latte_core.app;
  * 非常安全的懒汉模式
  */
 
-public enum ConfigType {
+public enum  ConfigType {
     API_HOST,//存储网络请求的域名
     APPLICATION_CONTEXT,//全局上下文
     CONFIG_READY,//控制配置或初始化是否完成

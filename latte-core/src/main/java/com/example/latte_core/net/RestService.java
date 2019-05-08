@@ -3,8 +3,10 @@ package com.example.latte_core.net;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -27,19 +29,25 @@ public interface RestService {
     @GET
     Call<String> get(@Url String url, @QueryMap Map<String, Object> params);
 
-    @FormUrlEncoded//为什么要这个呢？
+    @FormUrlEncoded
     @POST
     Call<String> post(@Url String url, @FieldMap Map<String,Object> params);
 
-    @FormUrlEncoded//为什么要这个呢？
     @POST
+    Call<String> postRaw(@Url String url, @Body RequestBody body);
+
+    @FormUrlEncoded
+    @PUT
     Call<String> put(@Url String url, @FieldMap Map<String,Object> params);
+
+    @PUT
+    Call<String> putRaw(@Url String url, @Body RequestBody body);
 
     @DELETE
     Call<String> delete(@Url String url, @QueryMap Map<String, Object> params);
 
-    @Streaming//加上后就会边下载边将下载的文件写入到硬盘中
-    @GET//没加时，文件会下载到内存中，下完后才会写入到硬盘，这样当文件过大时会内存溢出
+    @Streaming//加上后就会边下载边将下载的文件写入到硬盘中,没加时，文件会下载到内存中，下完后才会写入到硬盘，这样当文件过大时会内存溢出
+    @GET
     Call<ResponseBody> download(@Url String url, @QueryMap Map<String, Object> params);
 
     @Multipart

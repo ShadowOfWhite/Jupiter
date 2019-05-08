@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Describe：
  */
 
-public class LatteLoader {
+public class  LatteLoader {
 
     private static final int LOADER_SIZE_SCALE = 8;
     private static final int LOADER_OFFSET_SCALSE = 10;//偏移

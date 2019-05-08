@@ -24,9 +24,11 @@ public class RestCreator {
     public static WeakHashMap<String,Object> getParams(){
         return ParamsHolder.PARAMS;
     }
+
     public static RestService getRestService(){
         return RestServiceHolder.REST_SERVICE;
     }
+
     private static final class RetrofitHolder{
         private static final String BASE_URL = (String) Latte.getConfigurations().get(ConfigType.API_HOST.name());
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
