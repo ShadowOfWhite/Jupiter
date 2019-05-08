@@ -7,6 +7,7 @@ import com.example.latte_core.net.callback.IFailure;
 import com.example.latte_core.net.callback.IRequest;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.net.callback.RequestCallbacks;
+import com.example.latte_core.net.download.DownloadHandler;
 import com.example.latte_core.ui.LatteLoader;
 import com.example.latte_core.ui.LoaderStyle;
 
@@ -38,6 +39,9 @@ public class RestClient {
     private final File FILE;
     private final LoaderStyle LOADER_STYLE;
     private final Context CONTEXT;
+    private final String NAME;
+    private final String EXTENSION;
+    private final String DOWNLOAD_DIR;
 
     public RestClient(String url,
                       Map<String, Object> params,
@@ -48,7 +52,11 @@ public class RestClient {
                       RequestBody body,
                       File file,
                       Context context ,
-                      LoaderStyle loaderStyle ) {
+                      LoaderStyle loaderStyle,
+                      String downlodfDir,
+                      String extension,
+                      String name
+                      ) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -59,6 +67,9 @@ public class RestClient {
         this.FILE = file;
         this.LOADER_STYLE = loaderStyle;
         this.CONTEXT = context;
+        this.DOWNLOAD_DIR = downlodfDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
     }
 
     public static RestClientBuilder builder(){
@@ -99,8 +110,6 @@ public class RestClient {
                 final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()),FILE);
                 final  MultipartBody.Part body = MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
                 call = RestCreator.getRestService().upload(URL,body);
-
-
                 break;
             default:
                 break;
@@ -152,5 +161,14 @@ public class RestClient {
 
     public final void delete(){
         request(HttpMethod.DELETE);
+    }
+
+    public final void upload(){
+        request(HttpMethod.UPLOAD);
+    }
+
+    public final void download(){
+
+        new DownloadHandler(URL,REQUEST,SUCCESS,FAILURE,ERROR,NAME,EXTENSION,DOWNLOAD_DIR).handleDownload();
     }
 }
