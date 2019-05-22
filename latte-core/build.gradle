@@ -45,7 +45,7 @@ dependencies {
     compile 'me.yokeyword:fragmentation:0.10.1'
     compile 'me.yokeyword:fragmentation-swipeback:0.7.9'
     //ButterKnife依赖
-    implementation 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     //网络请求依赖
     api 'com.squareup.okio:okio:1.14.1'
@@ -53,7 +53,13 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-scalars:2.4.0'
     //加载load AVLoadingIndicatorView
-    compile 'com.wang.avi:library:2.1.3'
+    implementation 'com.wang.avi:library:2.1.3'
+    //Banner依赖
+    implementation 'com.bigkoo:convenientbanner:2.1.5'//地址变小写了，额。。。
+//    implementation 'androidx.recyclerview:recyclerview:1.0.0+'
+    //json依赖
+    compile 'com.alibaba:fastjson:1.2.57'
+
 
 
 

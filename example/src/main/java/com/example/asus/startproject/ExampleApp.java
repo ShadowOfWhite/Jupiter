@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.latte.ec.icon.FontEcModule;
 import com.example.latte_core.app.Latte;
+import com.example.latte_core.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
@@ -18,6 +19,7 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
+                .withInterceptor(new DebugInterceptor("baidu",R.raw.text))
                 .withIcon(new FontEcModule())
                 .configure();
     }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.WeakHashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by 杨淋 on 2018/4/24.
  * Describe：这个类是进行一些配置文件的存储以及获取,单例
@@ -16,6 +18,7 @@ public class Configurator {
 //    private static final WeakHashMap<String,Object> LATTE_CONFIGS = new WeakHashMap<>();//WeakHashMap比HashMap要好，听说是不用的键值对就会进行回收，优化了内存
     private static final HashMap<String,Object> LATTE_CONFIGS = new HashMap<>();//因为是配置文件，所以如果用WeakHashMap的话，配置的键值对可能会被回收，所以不能用WeakHashMap
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator(){
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
@@ -46,6 +49,22 @@ public class Configurator {
     public final Configurator withIcon(IconFontDescriptor icon){
         ICONS.add(icon);
         return this;
+    }
+
+    public final Configurator withInterceptor(Interceptor interceptor){
+
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);
+        return this;
+
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);
+        return this;
+
     }
 
     //初始化字体图标

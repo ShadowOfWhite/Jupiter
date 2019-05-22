@@ -31,5 +31,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     annotationProcessor project(':latte-compliler')
-    compile project(path: ':latte-core')
+    implementation project(path: ':latte-core')
 }
