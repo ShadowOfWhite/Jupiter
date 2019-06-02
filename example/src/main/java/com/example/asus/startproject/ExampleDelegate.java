@@ -27,7 +27,7 @@ public class ExampleDelegate extends LatteDelegate {
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
         Log.i(TAG, "onBindView: ----------");
-        testRestClient();
+//        testRestClient();
     }
 
     private void testRestClient(){

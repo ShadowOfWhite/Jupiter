@@ -32,4 +32,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     annotationProcessor project(':latte-compliler')
     implementation project(path: ':latte-core')
+
+    //Facebook调试
+    compile 'com.facebook.stetho:stetho:1.5.1'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 }
