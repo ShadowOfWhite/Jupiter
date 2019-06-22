@@ -1,5 +1,7 @@
 package com.example.latte_core.app;
 
+import android.os.Handler;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -19,9 +21,13 @@ public class Configurator {
     private static final HashMap<String,Object> LATTE_CONFIGS = new HashMap<>();//因为是配置文件，所以如果用WeakHashMap的话，配置的键值对可能会被回收，所以不能用WeakHashMap
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
+    private static final Handler HANDLER = new Handler();
+
 
     private Configurator(){
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
+        LATTE_CONFIGS.put(ConfigType.HANDLER.name(), HANDLER);
+
     }
 
     public static Configurator getInstance(){

@@ -17,13 +17,15 @@ import com.orhanobut.logger.Logger;
  */
 
 public class ExampleApp extends Application {
+
+
     @Override
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                .withApiHost("http://127.0.0.1/")
+                .withApiHost("http://mock.fulingjie.com/mock-android/api/")
                 .withIcon(new FontAwesomeModule())
-                .withInterceptor(new DebugInterceptor("mock",R.raw.text))
+                .withInterceptor(new DebugInterceptor("debug",R.raw.text))
                 .withIcon(new FontEcModule())
                 .configure();
 

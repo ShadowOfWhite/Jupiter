@@ -66,6 +66,13 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.57'
     //log
     compile 'com.orhanobut:logger:2.2.0'
-    //数据库依赖
+    //RecyclerView依赖
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    //图片处理
+    implementation ('com.github.bumptech.glide:glide:4.9.0') {
+                exclude group: "com.android.support"
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
 
 }

@@ -64,7 +64,6 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
         initTimer();
-
     }
 
     /**
