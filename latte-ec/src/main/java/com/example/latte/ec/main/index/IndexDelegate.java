@@ -2,6 +2,7 @@ package com.example.latte.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,6 +19,7 @@ import com.example.latte.ec.R2;
 import com.example.latte_core.delegates.buttom.ButtomItemDelegate;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
+import com.example.latte_core.ui.recycler.BaseDecoration;
 import com.example.latte_core.ui.recycler.MultipleFields;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
 import com.example.latte_core.ui.refresh.RefreshHandler;
@@ -74,6 +76,8 @@ public class IndexDelegate extends ButtomItemDelegate {
     private void initRecyclerView(){
         final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
         rvIndex.setLayoutManager(manager);
+        rvIndex.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext()
+                ,R.color.app_background),5));
     }
 
     private void initRefrshLayout(){

@@ -8,11 +8,13 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.latte_core.R;
 import com.example.latte_core.app.Latte;
 import com.example.latte_core.ui.banner.BannerCreator;
+import com.example.latte_core.util.log.LatteLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +25,17 @@ import java.util.List;
  * 描述：
  */
 public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
-        implements BaseQuickAdapter.SpanSizeLookup,OnItemClickListener {
+        implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
 
     //确保初始化一次banner，防止重复Item加载
     private boolean mIsInitBanner = false;
+
+    //设置图片加载策略
+    private static final RequestOptions REQUEST_OPTIONS =
+            new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//全缓存
+                    .dontAnimate()//不需要动画
+                    .centerCrop();
 
     protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
@@ -75,9 +84,6 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)//全缓存
-                        .dontAnimate()//不需要动画
-                        .centerCrop()
                         .into((ImageView) holder.getView(R.id.img_single));
                 break;
 
@@ -96,11 +102,11 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 break;
 
             case ItemType.BANNER:
-                if (!mIsInitBanner){
+                if (!mIsInitBanner) {
 
                     bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
-                    BannerCreator.setDefault(convenientBanner,bannerImages,this);
+                    BannerCreator.setDefault(convenientBanner, bannerImages, this);
                     mIsInitBanner = true;
 
                 }
@@ -120,6 +126,8 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     @Override
     public void onItemClick(int position) {
+
+        LatteLogger.i("点击了第"+position+"个banner");
 
     }
 }

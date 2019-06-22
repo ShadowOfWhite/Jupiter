@@ -40,6 +40,12 @@ public final class LatteLogger {
         }
     }
 
+    public static void i( String message) {
+        if (LEVEL <= INFO) {
+            Logger.i(message);
+        }
+    }
+
     public static void w(String tag, String message) {
         if (LEVEL <= WARN) {
             Logger.t(tag).w(message);

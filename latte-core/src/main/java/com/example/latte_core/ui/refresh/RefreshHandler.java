@@ -56,6 +56,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
     }
 
     public void firstPage(String url){
+        REFRESH_LAYOUT.setRefreshing(true);
         BEAN.setDelayed(1000);
         RestClient.builder()
                 .url(url)
@@ -70,6 +71,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                         mAdapter.setOnLoadMoreListener(RefreshHandler.this,RECYCLERVIEW);
                         RECYCLERVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
+                        REFRESH_LAYOUT.setRefreshing(false);
                     }
                 })
                 .build()

@@ -1,5 +1,6 @@
 package com.example.latte_core.app;
 
+import android.app.Activity;
 import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -62,8 +63,13 @@ public class Configurator {
         INTERCEPTORS.add(interceptor);
         LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);
         return this;
-
     }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigType.ACTIVITY.name(), activity);
+        return this;
+    }
+
 
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
 
