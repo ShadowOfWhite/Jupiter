@@ -25,8 +25,8 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withApiHost("http://mock.fulingjie.com/mock-android/api/")
                 .withIcon(new FontAwesomeModule())
-                .withInterceptor(new DebugInterceptor("debug",R.raw.text))
                 .withIcon(new FontEcModule())
+                .withInterceptor(new DebugInterceptor("debug",R.raw.text))
                 .configure();
 
         Logger.addLogAdapter(new AndroidLogAdapter());

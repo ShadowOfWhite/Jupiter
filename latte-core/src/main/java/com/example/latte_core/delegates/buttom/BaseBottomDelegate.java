@@ -25,7 +25,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 /**
  * 作者：贪欢
  * 时间：2019/6/4
- * 描述：
+ * 描述：包含几个碎片的碎片
  */
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener{
 

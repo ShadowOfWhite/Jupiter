@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.ec.main.EcBottomDelegate;
 import com.example.latte_core.delegates.buttom.ButtomItemDelegate;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
@@ -78,6 +79,10 @@ public class IndexDelegate extends ButtomItemDelegate {
         rvIndex.setLayoutManager(manager);
         rvIndex.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext()
                 ,R.color.app_background),5));
+
+        final EcBottomDelegate ecBottomDelegate = getparentDelegate();
+        rvIndex.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
+
     }
 
     private void initRefrshLayout(){
