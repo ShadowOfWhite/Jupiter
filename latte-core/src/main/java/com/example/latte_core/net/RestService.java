@@ -26,6 +26,8 @@ import retrofit2.http.Url;
 
 public interface RestService {
 
+    // TODO: 2019/6/23 这里的Map集合还没有使用案例 
+
     @GET
     Call<String> get(@Url String url, @QueryMap Map<String, Object> params);
 

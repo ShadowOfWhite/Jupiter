@@ -62,6 +62,8 @@ public class IndexDelegate extends ButtomItemDelegate {
     protected void onBindView(Bundle savedInstanceState, View rootView) {
 
         mRefreshHandler = RefreshHandler.create(srlIndex,rvIndex,new IndexDataConverter());
+        //toolbar状态改变不会影响其它页面的toolbar
+        tbIndex.getBackground().mutate();
 
     }
 

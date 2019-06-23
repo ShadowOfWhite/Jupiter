@@ -51,6 +51,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     }
 
     private void init() {
+        // TODO: 2019/6/23 这个类型设置原理是什么 ，为什么MultipleViewHolder里面有这个type
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
         addItemType(ItemType.IMAGE, R.layout.item_multiple_image);
         addItemType(ItemType.TEXT_IMAGE, R.layout.item_multiple_image_text);
@@ -84,6 +85,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
+                        .apply(REQUEST_OPTIONS)
                         .into((ImageView) holder.getView(R.id.img_single));
                 break;
 
