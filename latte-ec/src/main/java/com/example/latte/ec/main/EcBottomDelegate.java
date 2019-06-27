@@ -2,6 +2,7 @@ package com.example.latte.ec.main;
 
 import android.graphics.Color;
 
+import com.example.latte.ec.main.discover.DiscoverDelegate;
 import com.example.latte.ec.main.index.IndexDelegate;
 import com.example.latte.ec.main.sort.SortDelegate;
 import com.example.latte_core.delegates.buttom.BaseBottomDelegate;
@@ -24,7 +25,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         LinkedHashMap<BottomTabBean, ButtomItemDelegate> items = new LinkedHashMap<>();
         items.put(new BottomTabBean("{fa-home}","主页"),new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}","分类"),new SortDelegate());
-        items.put(new BottomTabBean("{fa-compass}","发现"),new IndexDelegate());
+        items.put(new BottomTabBean("{fa-compass}","发现"),new DiscoverDelegate());
         items.put(new BottomTabBean("{fa-shopping-cart}","购物车"),new IndexDelegate());
         items.put(new BottomTabBean("{fa-user}","我的"),new IndexDelegate());
         return builder.addItems(items).build();

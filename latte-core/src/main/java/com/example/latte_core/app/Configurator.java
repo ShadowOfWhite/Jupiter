@@ -3,6 +3,8 @@ package com.example.latte_core.app;
 import android.app.Activity;
 import android.os.Handler;
 
+import com.example.latte_core.delegates.web.event.Event;
+import com.example.latte_core.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -58,6 +60,8 @@ public class Configurator {
         return this;
     }
 
+
+
     public final Configurator withInterceptor(Interceptor interceptor){
 
         INTERCEPTORS.add(interceptor);
@@ -77,6 +81,16 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);
         return this;
 
+    }
+
+    public final Configurator withJavascriptInterface(String name){
+        LATTE_CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(),name);
+        return this;
+    }
+
+    public final Configurator withWebEvent(String action, Event event){
+        EventManager.getInstance().addEvent(action,event);
+        return this;
     }
 
     //初始化字体图标

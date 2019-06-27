@@ -28,7 +28,7 @@ public class ImageHolder implements Holder<String> {
     @Override
     public void UpdateUI(Context context, int position, String data) {
 
-        LatteLogger.i("更新一次UI");
+//        LatteLogger.i("更新一次UI");
         Glide.with(context)
                 .load(data)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)//全缓存

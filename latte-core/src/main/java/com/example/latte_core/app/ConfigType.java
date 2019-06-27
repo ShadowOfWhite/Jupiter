@@ -13,5 +13,6 @@ public enum  ConfigType {
     ICON,//存储自己的一些初始化项目
     ACTIVITY,
     INTERCEPTOR,
-    HANDLER
+    HANDLER,
+    JAVASCRIPT_INTERFACE
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import com.example.latte.ec.R;
@@ -29,6 +30,8 @@ public class ContentDelegate extends LatteDelegate {
     private static final String ARG_CONTENT_ID = "CONTENT_ID";
     private int mContentId = -1;
     private List<SectionBean> mData = null;
+
+    // TODO: 2019/6/23 可以添加左右列表联动的效果：1内容滑到底部过渡到内容2
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +77,12 @@ public class ContentDelegate extends LatteDelegate {
                                 new SectionAdapter(R.layout.item_section_content,
                                         R.layout.item_section_header,mData);
 
-                        mRecyclerView.setAdapter(sectionAdapter);
+                        //快速点击界面被销毁，rv会为null
+                        if(mRecyclerView != null){
+                            mRecyclerView.setAdapter(sectionAdapter);
+                        }else {
+                            
+                        }
 
                     }
                 })

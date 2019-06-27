@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:background="@android:color/holo_orange_dark"
+        android:gravity="center"
+        android:layout_height="80dp">
+        <android.support.v7.widget.AppCompatTextView
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:text="发现"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.ContentFrameLayout
+        android:id="@+id/web_disvover_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
