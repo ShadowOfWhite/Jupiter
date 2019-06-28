@@ -69,6 +69,12 @@ public class Configurator {
         return this;
     }
 
+    //浏览器加载的host
+    public Configurator withWebHost(String host){
+        LATTE_CONFIGS.put(ConfigType.WEB_HOST.name(),host);
+        return this;
+    }
+
     public final Configurator withActivity(Activity activity) {
         LATTE_CONFIGS.put(ConfigType.ACTIVITY.name(), activity);
         return this;

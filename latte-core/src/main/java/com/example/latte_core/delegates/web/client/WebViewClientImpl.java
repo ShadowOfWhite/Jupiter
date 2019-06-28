@@ -3,16 +3,18 @@ package com.example.latte_core.delegates.web.client;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.util.Log;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.latte_core.app.ConfigType;
 import com.example.latte_core.app.Latte;
 import com.example.latte_core.delegates.web.IPageLoadListener;
 import com.example.latte_core.delegates.web.WebDelegate;
 import com.example.latte_core.delegates.web.route.Router;
 import com.example.latte_core.ui.loader.LatteLoader;
 import com.example.latte_core.util.log.LatteLogger;
-
+import com.example.latte_core.util.storage.LattePreference;
 
 
 /**
@@ -26,7 +28,7 @@ public class WebViewClientImpl extends WebViewClient {
     private IPageLoadListener iPageLoadListener = null;
     private static Handler HANDLER = Latte.getHandler();
 
-    public void setPageLoadListener(IPageLoadListener listener){
+    public void setPageLoadListener(IPageLoadListener listener) {
         this.iPageLoadListener = listener;
     }
 
@@ -36,26 +38,43 @@ public class WebViewClientImpl extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        LatteLogger.d("shouldOverrideUrlLoading",url);
+        LatteLogger.d("shouldOverrideUrlLoading", url);
 
-        return Router.getInstance().handlerWebUrl(DELEGATE,url);
+        return Router.getInstance().handlerWebUrl(DELEGATE, url);
     }
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
 
         super.onPageStarted(view, url, favicon);
-        if (iPageLoadListener != null){
+        if (iPageLoadListener != null) {
             iPageLoadListener.onLoadStart();
         }
 
         LatteLoader.showLoading(view.getContext());
     }
 
+    private void syncCookie() {
+        final CookieManager manager = CookieManager.getInstance();
+        /*
+         注意，这里的cookie和API请求是不一样的，这个在网页中不可见
+         */
+        final String webHost = Latte.getConfiguration(ConfigType.WEB_HOST);
+        if (webHost != null && manager.hasCookies()) {
+
+            final String cookieStr = manager.getCookie(webHost);
+            if (cookieStr != null && !cookieStr.equals("")) {
+
+                LattePreference.addCustomAppProfile("cookie",cookieStr);
+            }
+        }
+    }
+
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        if (iPageLoadListener != null){
+        syncCookie();
+        if (iPageLoadListener != null) {
             iPageLoadListener.onLoadEnd();
         }
         HANDLER.postDelayed(new Runnable() {
@@ -63,6 +82,6 @@ public class WebViewClientImpl extends WebViewClient {
             public void run() {
                 LatteLoader.stopLoading();
             }
-        },1000);
+        }, 1000);
     }
 }

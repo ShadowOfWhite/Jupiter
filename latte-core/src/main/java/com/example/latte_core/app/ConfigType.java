@@ -14,5 +14,6 @@ public enum  ConfigType {
     ACTIVITY,
     INTERCEPTOR,
     HANDLER,
-    JAVASCRIPT_INTERFACE
+    JAVASCRIPT_INTERFACE,
+    WEB_HOST
 }

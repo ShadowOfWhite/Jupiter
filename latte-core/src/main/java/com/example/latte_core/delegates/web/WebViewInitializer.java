@@ -2,6 +2,7 @@ package com.example.latte_core.delegates.web;
 
 import android.annotation.SuppressLint;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -14,6 +15,12 @@ public class WebViewInitializer {
 
     @SuppressLint("SetJavaScriptEnabled")
     public WebView creatWebView(WebView webView){
+
+        //cookie相关
+        final CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.setAcceptThirdPartyCookies(webView,true);
+        CookieManager.setAcceptFileSchemeCookies(true);
 
         //设置可调试，4.9以上可用
         WebView.setWebContentsDebuggingEnabled(true);
