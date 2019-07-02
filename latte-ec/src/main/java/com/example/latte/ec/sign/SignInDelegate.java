@@ -117,13 +117,17 @@ public class SignInDelegate extends LatteDelegate {
                     })
                     .failure(new IFailure() {
                         @Override
-                        public void onFailure() {
+                        public void onFailure(String msg) {
                             Toast.makeText(getContext(), "登录失败", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .error(new IError() {
                         @Override
                         public void onError(int code, String msg) {
+
+                            //无管是否登录成功
+                            LatteLogger.json("USER_PROFILE", msg);
+                            SignHandler.onSignIn(msg, mISignListener);
                             Toast.makeText(getContext(), code + "," + msg, Toast.LENGTH_SHORT).show();
                         }
                     })

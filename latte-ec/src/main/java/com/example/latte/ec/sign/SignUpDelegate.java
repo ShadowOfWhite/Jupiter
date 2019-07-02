@@ -74,7 +74,7 @@ public class SignUpDelegate extends LatteDelegate {
                     })
                     .failure(new IFailure() {
                         @Override
-                        public void onFailure() {
+                        public void onFailure(String msg) {
                             Toast.makeText(getContext(),"注册失败",Toast.LENGTH_SHORT).show();
                         }
                     })

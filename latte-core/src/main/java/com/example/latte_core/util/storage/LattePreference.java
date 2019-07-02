@@ -82,7 +82,7 @@ public class LattePreference {
     }
 
     public static String getCustomAppProfile(String key) {
-        return getAppPreference().getString(key, null);
+        return getAppPreference().getString(key, "");
     }
 
     public static String getCustomAppProfile(Enum key) {

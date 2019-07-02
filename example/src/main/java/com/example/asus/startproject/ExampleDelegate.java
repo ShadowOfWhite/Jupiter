@@ -44,7 +44,7 @@ public class ExampleDelegate extends LatteDelegate {
                 })
                 .failure(new IFailure() {
                     @Override
-                    public void onFailure() {
+                    public void onFailure(String msg) {
                         Log.e(TAG, "onFailure: 失败了");
 
                     }
@@ -61,4 +61,6 @@ public class ExampleDelegate extends LatteDelegate {
 
 
     }
+
+
 }

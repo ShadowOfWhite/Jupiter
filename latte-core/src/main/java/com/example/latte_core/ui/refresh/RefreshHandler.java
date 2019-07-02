@@ -2,6 +2,7 @@ package com.example.latte_core.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -12,6 +13,7 @@ import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.DataConverter;
 import com.example.latte_core.ui.recycler.MultipleRecyclerAdapter;
+import com.example.latte_core.util.log.LatteLogger;
 import com.example.latte_core.util.toast.ToastUtil;
 
 /**
@@ -63,6 +65,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        LatteLogger.json("测试",response);
                         final JSONObject object = JSONObject.parseObject(response);
                         BEAN.setTotal(object.getInteger("total"))
                                 .setPageSize(object.getInteger("page_size"));
@@ -84,6 +87,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
 
     @Override
     public void onLoadMoreRequested() {
+
 
     }
 }

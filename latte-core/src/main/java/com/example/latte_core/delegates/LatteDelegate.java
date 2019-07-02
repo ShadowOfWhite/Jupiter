@@ -10,4 +10,6 @@ public abstract class LatteDelegate extends PermissionCheckDelegate {
     public <T extends LatteDelegate> T getparentDelegate(){
         return (T)getParentFragment();
     }
+
+
 }
