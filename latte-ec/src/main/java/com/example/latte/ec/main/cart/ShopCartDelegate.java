@@ -1,11 +1,13 @@
 package com.example.latte.ec.main.cart;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ViewStubCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.example.latte_core.net.callback.IError;
 import com.example.latte_core.net.callback.IFailure;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
+import com.example.latte_core.util.toast.ToastUtil;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.io.IOError;
@@ -36,7 +39,7 @@ import butterknife.Unbinder;
  * 时间：2019/6/28
  * 描述：
  */
-public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFailure {
+public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFailure,ICartItemListener {
     @BindView(R2.id.tv_top_shop_cart_clear)
     TextView tvTopShopCartClear;
     @BindView(R2.id.tv_top_shop_cart_remove_selected)
@@ -45,6 +48,10 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     RecyclerView rvShopCart;
     @BindView(R2.id.icon_cart_select_all)
     IconTextView iconCartSelectAll;
+    @BindView(R2.id.stub_no_item)
+    ViewStubCompat mStubNoItem;
+    @BindView(R2.id.tv_shop_cart_total_price)
+    TextView mTotalPrice = null;
 
     private ShopCartAdapter shopCartAdapter;
     //购物车数量标记
@@ -97,7 +104,7 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
                shopCartAdapter.notifyItemRangeChanged(removePosition,shopCartAdapter.getItemCount());
            }
         }
-
+        checkItemCount();
 
 
 
@@ -107,6 +114,25 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     void onClickClear(){
         shopCartAdapter.getData().clear();
         shopCartAdapter.notifyDataSetChanged();
+        checkItemCount();
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void checkItemCount(){
+        final int count = shopCartAdapter.getItemCount();
+        if (count == 0){
+            final View stubView = mStubNoItem.inflate();
+            TextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
+            tvToBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtil.showText("购物");
+                }
+            });
+            rvShopCart.setVisibility(View.GONE);
+        }else {
+            rvShopCart.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -137,10 +163,12 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     public void onSuccess(String response) {
         ArrayList<MultipleItemEntity> data = new ShopCartDataConverter().setJsonData(response).convert();
         shopCartAdapter = new ShopCartAdapter(data);
+        shopCartAdapter.setCartItemListener(this);
 //        shopCartAdapter.closeLoadAnimation();//关闭动画，可以去掉屏幕闪烁
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rvShopCart.setLayoutManager(manager);
         rvShopCart.setAdapter(shopCartAdapter);
+        checkItemCount();
     }
 
 
@@ -149,6 +177,13 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     public void onFailure(String msg) {
         Log.e("错误", "onFailure: "+msg );
 
+
+    }
+
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+        final double price = shopCartAdapter.getTotalPrice();
+        mTotalPrice.setText(String.valueOf(price));
 
     }
 }
