@@ -176,14 +176,11 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     @Override
     public void onFailure(String msg) {
         Log.e("错误", "onFailure: "+msg );
-
-
     }
 
     @Override
     public void onItemClick(double itemTotalPrice) {
         final double price = shopCartAdapter.getTotalPrice();
         mTotalPrice.setText(String.valueOf(price));
-
     }
 }

@@ -56,6 +56,10 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     }
 
+    public void test(){
+
+    }
+
     public void setCartItemListener(ICartItemListener listener){
         this.mCartItemListener = listener;
     }
