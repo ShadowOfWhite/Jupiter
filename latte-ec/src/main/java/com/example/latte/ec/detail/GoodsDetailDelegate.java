@@ -32,7 +32,7 @@ public class GoodsDetailDelegate extends LatteDelegate {
 
 
     @Override
-    protected FragmentAnimator onCreateFragmentAnimator() {
+    public FragmentAnimator onCreateFragmentAnimator() {
         //返回水平的进场动画
         return new DefaultHorizontalAnimator();
     }

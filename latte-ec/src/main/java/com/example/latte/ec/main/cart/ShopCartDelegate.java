@@ -28,6 +28,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 import java.io.IOError;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,13 +52,17 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     @BindView(R2.id.stub_no_item)
     ViewStubCompat mStubNoItem;
     @BindView(R2.id.tv_shop_cart_total_price)
-    TextView mTotalPrice = null;
+    TextView mTvtotalPrice = null;
 
     private ShopCartAdapter shopCartAdapter;
     //购物车数量标记
     private int mCurrentCount = 0;
 
     private int mTotalCount = 0;
+    private double mTotalPrice = 0.0;
+
+
+
 
 
     @OnClick(R2.id.icon_cart_select_all)
@@ -117,6 +122,39 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
         checkItemCount();
     }
 
+
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay(){
+
+    }
+
+    //创建订单，注意，和支付是没有关系的
+    private void createOrder(){
+        final String orderUrl = "";
+        WeakHashMap<String,Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userid",1);
+        orderParams.put("amount",0.01);
+        orderParams.put("comment","测试支付");
+        orderParams.put("type",1);
+        orderParams.put("ordertype",0);
+        orderParams.put("isanonymous",true);
+        orderParams.put("followeduser",0);
+        RestClient.builder()
+                .url(orderUrl)
+                .params(orderParams)
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+
+                    }
+                })
+                .build()
+                .post();
+    }
+
+
     @SuppressLint("RestrictedApi")
     private void checkItemCount(){
         final int count = shopCartAdapter.getItemCount();
@@ -169,6 +207,8 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
         rvShopCart.setLayoutManager(manager);
         rvShopCart.setAdapter(shopCartAdapter);
         checkItemCount();
+        mTotalPrice = shopCartAdapter.getTotalPrice();
+        mTvtotalPrice.setText(String.valueOf(mTotalPrice));
     }
 
 
@@ -183,7 +223,7 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
     @Override
     public void onItemClick(double itemTotalPrice) {
         final double price = shopCartAdapter.getTotalPrice();
-        mTotalPrice.setText(String.valueOf(price));
+        mTvtotalPrice.setText(String.valueOf(price));
 
     }
 }

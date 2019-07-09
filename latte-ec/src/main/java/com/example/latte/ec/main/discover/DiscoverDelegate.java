@@ -31,6 +31,6 @@ public class DiscoverDelegate extends ButtomItemDelegate {
         super.onLazyInitView(savedInstanceState);
         final WebDelegateImpl delegate = WebDelegateImpl.create("file:///android_asset/index.html");
         delegate.setTopdelegate(this.getparentDelegate());
-        loadRootFragment(R.id.web_disvover_container,delegate);
+        getSupportDelegate().loadRootFragment(R.id.web_disvover_container,delegate);
     }
 }

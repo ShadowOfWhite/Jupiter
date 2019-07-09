@@ -89,7 +89,7 @@ public class SignInDelegate extends LatteDelegate {
     @OnClick(R2.id.tv_link_sign_up)
     void onClikLink() {
 //        start(new SignUpDelegate(),SupportFragment.SINGLETASK);
-        startWithPop(new SignUpDelegate());
+        getSupportDelegate().startWithPop(new SignUpDelegate());
     }
 
     @OnClick(R2.id.icon_in_we_chat)

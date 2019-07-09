@@ -32,9 +32,9 @@ public class SortDelegate extends ButtomItemDelegate {
         super.onLazyInitView(savedInstanceState);
         Log.i("SortDelegate", "onLazyInitView: 开始懒加载");
         final VerticalListDelegate listDelegate = new VerticalListDelegate();
-        loadRootFragment(R.id.vertical_list_container,listDelegate);
+        getSupportDelegate().loadRootFragment(R.id.vertical_list_container,listDelegate);
         //设置右侧第一个分类显示，默认显示分类一
-        replaceLoadRootFragment(R.id.sort_content_container,ContentDelegate.newInstance(1),false);
+        getSupportDelegate().loadRootFragment(R.id.sort_content_container,ContentDelegate.newInstance(1));
         // TODO: 2019/6/23 新的代码用的是这个，暂时不用，看看效果
 //     loadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1));
     }

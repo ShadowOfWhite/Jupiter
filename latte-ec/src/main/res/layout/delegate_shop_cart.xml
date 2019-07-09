@@ -143,6 +143,7 @@
 
 
         <TextView
+            android:id="@+id/tv_shop_cart_pay"
             android:textSize="20sp"
             android:textColor="@android:color/white"
             android:background="@color/app_main"
