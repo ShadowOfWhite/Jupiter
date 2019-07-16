@@ -8,37 +8,24 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.ec.main.EcBottomDelegate;
-import com.example.latte_core.delegates.buttom.ButtomItemDelegate;
-import com.example.latte_core.net.RestClient;
-import com.example.latte_core.net.callback.ISuccess;
+import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 import com.example.latte_core.ui.recycler.BaseDecoration;
-import com.example.latte_core.ui.recycler.MultipleFields;
-import com.example.latte_core.ui.recycler.MultipleItemEntity;
 import com.example.latte_core.ui.refresh.RefreshHandler;
-import com.example.latte_core.util.toast.ToastUtil;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 作者：贪欢
  * 时间：2019/6/5
  * 描述：
  */
-public class IndexDelegate extends ButtomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_index)
     RecyclerView rvIndex;
     @BindView(R2.id.srl_index)

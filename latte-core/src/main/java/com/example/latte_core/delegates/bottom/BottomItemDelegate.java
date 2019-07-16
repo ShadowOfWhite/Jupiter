@@ -1,4 +1,4 @@
-package com.example.latte_core.delegates.buttom;
+package com.example.latte_core.delegates.bottom;
 
 import android.view.KeyEvent;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 
 import com.example.latte_core.R;
+import com.example.latte_core.app.Latte;
 import com.example.latte_core.delegates.LatteDelegate;
 
 /**
@@ -13,9 +14,27 @@ import com.example.latte_core.delegates.LatteDelegate;
  * 时间：2019/6/4
  * 描述：每一个页面
  */
-public abstract class ButtomItemDelegate extends LatteDelegate implements View.OnKeyListener{
+public abstract class BottomItemDelegate extends LatteDelegate {
 
-    private long mExitTime = 0;
+    // 再点一次退出程序时间设置
+    private static final long WAIT_TIME = 2000L;
+    private long TOUCH_TIME = 0;
+
+    @Override
+    public boolean onBackPressedSupport() {
+        if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+            _mActivity.finish();
+        } else {
+            TOUCH_TIME = System.currentTimeMillis();
+            Toast.makeText(_mActivity, "双击退出" + Latte.getApplication().getString(R.string.app_name), Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
+
+
+
+/*    private long mExitTime = 0;
     private static final int EXIT_TIME = 2000;
 
     @Override
@@ -45,5 +64,5 @@ public abstract class ButtomItemDelegate extends LatteDelegate implements View.O
             return true;
         }
         return false;
-    }
+    }*/
 }

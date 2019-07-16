@@ -8,15 +8,14 @@ import android.view.View;
 import com.example.latte.ec.R;
 import com.example.latte.ec.main.sort.content.ContentDelegate;
 import com.example.latte.ec.main.sort.list.VerticalListDelegate;
-import com.example.latte_core.delegates.BaseDelegate;
-import com.example.latte_core.delegates.buttom.ButtomItemDelegate;
+import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 
 /**
  * 作者：贪欢
  * 时间：2019/6/5
  * 描述：
  */
-public class SortDelegate extends ButtomItemDelegate {
+public class SortDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_sort;

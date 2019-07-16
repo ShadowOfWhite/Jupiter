@@ -1,4 +1,4 @@
-package com.example.latte_core.delegates.buttom;
+package com.example.latte_core.delegates.bottom;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,7 +21,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.ISupportFragment;
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * 作者：贪欢
@@ -31,8 +30,8 @@ import me.yokeyword.fragmentation.SupportFragment;
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener{
 
     private final ArrayList<BottomTabBean> TAB_BEANS = new ArrayList<>();
-    private final ArrayList<ButtomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
-    private final LinkedHashMap<BottomTabBean,ButtomItemDelegate> ITEMS = new LinkedHashMap<>();
+    private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
+    private final LinkedHashMap<BottomTabBean,BottomItemDelegate> ITEMS = new LinkedHashMap<>();
 
     private int mCurrentDelegate = 0;
     private int mIndexDelegate = 0; //第一次进来展示的fragment
@@ -41,7 +40,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     @BindView(R2.id.bottom_bar)
     LinearLayoutCompat mBottomBar;
 
-    public abstract LinkedHashMap<BottomTabBean,ButtomItemDelegate> setItems(ItemBuilder builder);
+    public abstract LinkedHashMap<BottomTabBean,BottomItemDelegate> setItems(ItemBuilder builder);
 
     public abstract int setIndexDelegate();
 
@@ -63,12 +62,12 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         }
 
         ItemBuilder builder = ItemBuilder.builder();
-        LinkedHashMap<BottomTabBean, ButtomItemDelegate> items = setItems(builder);
+        LinkedHashMap<BottomTabBean, BottomItemDelegate> items = setItems(builder);
         ITEMS.putAll(items);
 
-        for (Map.Entry<BottomTabBean, ButtomItemDelegate> item : ITEMS.entrySet()) {
+        for (Map.Entry<BottomTabBean, BottomItemDelegate> item : ITEMS.entrySet()) {
             BottomTabBean key = item.getKey();
-            ButtomItemDelegate value = item.getValue();
+            BottomItemDelegate value = item.getValue();
 
             TAB_BEANS.add(key);
             ITEM_DELEGATES.add(value);

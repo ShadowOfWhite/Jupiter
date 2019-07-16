@@ -9,38 +9,33 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
-import com.example.latte_core.delegates.buttom.ButtomItemDelegate;
+import com.example.latte.ec.pay.FastPay;
+import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 import com.example.latte_core.net.RestClient;
-import com.example.latte_core.net.callback.IError;
 import com.example.latte_core.net.callback.IFailure;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
 import com.example.latte_core.util.toast.ToastUtil;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.io.IOError;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * 作者：贪欢
  * 时间：2019/6/28
  * 描述：
  */
-public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFailure,ICartItemListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,IFailure,ICartItemListener {
     @BindView(R2.id.tv_top_shop_cart_clear)
     TextView tvTopShopCartClear;
     @BindView(R2.id.tv_top_shop_cart_remove_selected)
@@ -125,6 +120,8 @@ public class ShopCartDelegate extends ButtomItemDelegate implements ISuccess,IFa
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay(){
+
+        FastPay.create(this).beginPayDialog();
 
     }
 
