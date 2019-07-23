@@ -5,13 +5,13 @@ apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
 
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -37,7 +37,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':latte-core')
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
     implementation 'org.greenrobot:greendao:3.2.2' // add library

@@ -13,6 +13,8 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by 杨淋 on 2018/4/25.
  * Describe：
@@ -39,6 +41,8 @@ public class ExampleApp extends Application {
         Logger.addLogAdapter(new AndroidLogAdapter());
         DatabaseManager.getInstance().init(this);
         initStetho();
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
     }
 

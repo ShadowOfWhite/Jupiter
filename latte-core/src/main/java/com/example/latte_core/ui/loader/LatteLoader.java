@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.blankj.utilcode.util.NetworkUtils;
 import com.example.latte_core.R;
 import com.example.latte_core.util.dimen.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;

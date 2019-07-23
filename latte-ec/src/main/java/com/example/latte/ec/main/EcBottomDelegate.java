@@ -1,6 +1,8 @@
 package com.example.latte.ec.main;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.example.latte.ec.main.cart.ShopCartDelegate;
 import com.example.latte.ec.main.discover.DiscoverDelegate;
@@ -21,6 +23,11 @@ import java.util.LinkedHashMap;
  */
 public class EcBottomDelegate extends BaseBottomDelegate {
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {

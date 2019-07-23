@@ -3,6 +3,7 @@ package com.example.latte_core.app;
 import android.app.Activity;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.Utils;
 import com.example.latte_core.delegates.web.event.Event;
 import com.example.latte_core.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -46,6 +47,7 @@ public class Configurator {
 
     //配置完成后调用此方法
     public final void configure(){
+        Utils.init(Latte.getApplication());
         initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(),true);
     }
@@ -98,6 +100,8 @@ public class Configurator {
         EventManager.getInstance().addEvent(action,event);
         return this;
     }
+
+
 
     //初始化字体图标
     private void initIcons(){

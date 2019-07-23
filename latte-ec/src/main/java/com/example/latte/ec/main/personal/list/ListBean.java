@@ -96,7 +96,7 @@ public class ListBean implements MultiItemEntity {
 
 
     public static final class Builder{
-        private int id = 0;
+        private int id = 0; //为了以后辨别item所添加的
         private int itemType = 0;
         private String imageUrl = null;
         private String text = null;
