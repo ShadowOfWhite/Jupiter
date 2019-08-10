@@ -143,4 +143,17 @@ public class ListBean implements MultiItemEntity {
             return new ListBean(itemType,imageUrl,text,value,id,delegate,onCheckedChangeListener);
         }
     }
+
+    @Override
+    public String toString() {
+        return "ListBean{" +
+                "mItemType=" + mItemType +
+                ", mImageUrl='" + mImageUrl + '\'' +
+                ", mText='" + mText + '\'' +
+                ", mValue='" + mValue + '\'' +
+                ", mId=" + mId +
+                ", mDelegate=" + mDelegate +
+                ", mOnCheckedChangeListener=" + mOnCheckedChangeListener +
+                '}';
+    }
 }

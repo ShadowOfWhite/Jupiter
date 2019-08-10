@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.telecom.Call;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.latte_core.app.Latte;
+import com.example.latte_core.ui.scanner.ScannerDelegate;
 import com.example.latte_core.ui.camera.CameraImageBean;
 import com.example.latte_core.ui.camera.LatteCamera;
 import com.example.latte_core.ui.camera.RequestCode;
@@ -49,6 +48,12 @@ public abstract class PermissionCheckDelegate extends BaseDelegate {
     public void startCameraWithCheck() {
 
         PermissionCheckDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
+    }
+
+    //扫描二维码（不直接调用）
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void startScan(BaseDelegate delegate){
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(),RequestCode.SCAN);
     }
 
     @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})

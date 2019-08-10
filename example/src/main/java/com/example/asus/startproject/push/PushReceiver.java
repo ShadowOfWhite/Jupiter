@@ -15,6 +15,7 @@ import com.example.latte_core.util.log.LatteLogger;
 import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.JPushMessage;
 import cn.jpush.android.service.JPushMessageReceiver;
 
 /**
@@ -24,50 +25,28 @@ import cn.jpush.android.service.JPushMessageReceiver;
  */
 public class PushReceiver extends JPushMessageReceiver {
     @Override
-    public void onMultiActionClicked(Context context, Intent intent) {
-        Log.e("PushReceiver", "onMultiActionClicked: 被电击了" );
-        super.onMultiActionClicked(context, intent);
-        final Bundle bundle = intent.getExtras();
-        final Set<String> keys = bundle.keySet();
-        JSONObject json = new JSONObject();
-        for (String key : keys) {
-            final Object val = bundle.get(key);
-            json.put(key, val);
-        }
+    public void onTagOperatorResult(Context context,JPushMessage jPushMessage) {
+        TagAliasOperatorHelper.getInstance().onTagOperatorResult(context,jPushMessage);
+        super.onTagOperatorResult(context, jPushMessage);
+    }
+    @Override
+    public void onCheckTagOperatorResult(Context context,JPushMessage jPushMessage){
+        TagAliasOperatorHelper.getInstance().onCheckTagOperatorResult(context,jPushMessage);
+        super.onCheckTagOperatorResult(context, jPushMessage);
+    }
+    @Override
+    public void onAliasOperatorResult(Context context, JPushMessage jPushMessage) {
+        TagAliasOperatorHelper.getInstance().onAliasOperatorResult(context,jPushMessage);
+        super.onAliasOperatorResult(context, jPushMessage);
+    }
 
-        LatteLogger.json("PushReceiver", json.toJSONString());
-
-        final String pushAction = intent.getAction();
-        if (pushAction.equals(JPushInterface.ACTION_NOTIFICATION_RECEIVED)) {
-            //处理接收到的信息
-            onReceivedMessage(bundle);
-        } else if (pushAction.equals(JPushInterface.ACTION_NOTIFICATION_OPENED)) {
-            //打开相应的notification
-            onOpenNotification(context, bundle);
-        }
+    @Override
+    public void onMobileNumberOperatorResult(Context context, JPushMessage jPushMessage) {
+        TagAliasOperatorHelper.getInstance().onMobileNumberOperatorResult(context,jPushMessage);
+        super.onMobileNumberOperatorResult(context, jPushMessage);
     }
 
 
 
-    private void onReceivedMessage(Bundle bundle){
 
-        final String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
-        final String msgId = bundle.getString(JPushInterface.EXTRA_MSG_ID);
-        final int notificationId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-        final String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-        final String extra = bundle.getString(JPushInterface.EXTRA_EXTRA);
-        final String alert = bundle.getString(JPushInterface.EXTRA_ALERT);
-
-    }
-
-    private void onOpenNotification(Context context,Bundle bundle){
-
-        final String extra = bundle.getString(JPushInterface.EXTRA_EXTRA);
-        final Bundle openActivityBundle = new Bundle();
-        final Intent intent = new Intent(context,ExampleActivity.class);
-        intent.putExtras(openActivityBundle);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ContextCompat.startActivity(context,intent,null);
-
-    }
 }

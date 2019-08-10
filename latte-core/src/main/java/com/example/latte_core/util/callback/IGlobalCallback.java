@@ -1,5 +1,7 @@
 package com.example.latte_core.util.callback;
 
+import android.support.annotation.NonNull;
+
 /**
  * 作者：贪欢
  * 时间：2019/7/21
@@ -7,5 +9,5 @@ package com.example.latte_core.util.callback;
  */
 public interface IGlobalCallback<T> {
 
-    void executeCallback(T args);
+    void executeCallback(@NonNull T args);
 }

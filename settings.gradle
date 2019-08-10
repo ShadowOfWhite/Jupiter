@@ -1,1 +1,1 @@
-include ':example', ':latte-annotations', ':latte-compliler', ':latte-core', ':latte-ec'
+include ':example', ':latte-annotations', ':latte-compliler', ':latte-core', ':latte-ec', ':barcodescanner-core'

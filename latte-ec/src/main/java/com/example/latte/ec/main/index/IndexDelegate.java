@@ -19,6 +19,7 @@ import com.example.latte_core.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 作者：贪欢
@@ -43,6 +44,11 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
+    }
+
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode(){
+
     }
 
     @Override
@@ -73,6 +79,7 @@ public class IndexDelegate extends BottomItemDelegate {
         rvIndex.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
 
     }
+
 
     private void initRefrshLayout(){
         srlIndex.setColorSchemeResources(
