@@ -3,9 +3,12 @@ package com.example.latte.ec.main.index;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.latte.ec.detail.GoodsDetailDelegate;
 import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.ui.recycler.MultipleFields;
+import com.example.latte_core.ui.recycler.MultipleItemEntity;
 
 /**
  * 作者：贪欢
@@ -27,7 +30,9 @@ public class IndexItemClickListener  extends SimpleClickListener {
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
-        GoodsDetailDelegate delegate = GoodsDetailDelegate.create();
+        final MultipleItemEntity entity = (MultipleItemEntity) baseQuickAdapter.getData().get(position);
+        int goodsId = entity.getField(MultipleFields.ID);
+        GoodsDetailDelegate delegate = GoodsDetailDelegate.create(goodsId);
         DELEGATE.start(delegate);
     }
 

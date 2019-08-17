@@ -12,9 +12,13 @@ import com.example.latte_core.app.Latte;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.recycler.DataConverter;
+import com.example.latte_core.ui.recycler.MultipleItemEntity;
 import com.example.latte_core.ui.recycler.MultipleRecyclerAdapter;
 import com.example.latte_core.util.log.LatteLogger;
 import com.example.latte_core.util.toast.ToastUtil;
+import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
 
 /**
  * 作者：贪欢
@@ -71,6 +75,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                                 .setPageSize(object.getInteger("page_size"));
                         //设置Adapter
                         mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                        mAdapter.closeLoadAnimation();//关闭动画，可以去掉屏幕闪烁
                         mAdapter.setOnLoadMoreListener(RefreshHandler.this,RECYCLERVIEW);
                         RECYCLERVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
@@ -80,6 +85,49 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
                 .build()
                 .get();
     }
+
+    private void paging(final String url){
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount = BEAN.getCurrentCount();
+        final int total = BEAN.getTotal();
+        final int index = BEAN.getPageIndex();
+
+        if (mAdapter.getData().size()<pageSize || currentCount >= total){
+            mAdapter.loadMoreEnd(true);
+        }else {
+            Latte.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            .url(url+index)
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+
+                                    ArrayList<MultipleItemEntity> convert = CONVERTER.setJsonData(response).convert();
+
+                                    Logger.i("新增数量:"+convert.size());
+
+//                                    mAdapter.notifyItemRangeInserted(mAdapter.getData().size() - convert.size() , convert.size());
+
+                                    mAdapter.notifyDataSetChanged();
+
+                                    Logger.json(response);
+                                    //累加数量
+                                    BEAN.setCurrentCount(mAdapter.getData().size());
+                                    Logger.i("当前数量："+BEAN.getCurrentCount());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+                }
+            },1000);
+        }
+    }
+
+
     @Override
     public void onRefresh() {
         refresh();
@@ -88,6 +136,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,
     @Override
     public void onLoadMoreRequested() {
 
+        paging("refresh.php?index=");
 
     }
 }

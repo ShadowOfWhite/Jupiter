@@ -99,4 +99,6 @@ public class LattePreference {
     public static void removeCustomAppProfile(Enum key) {
         removeCustomAppProfile(key.name());
     }
+
+
 }

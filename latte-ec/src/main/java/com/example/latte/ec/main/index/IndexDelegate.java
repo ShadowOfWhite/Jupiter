@@ -1,6 +1,7 @@
 package com.example.latte.ec.main.index;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,9 +14,14 @@ import android.view.View;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.ec.main.EcBottomDelegate;
+import com.example.latte.ec.main.index.search.SearchDelegate;
 import com.example.latte_core.delegates.bottom.BottomItemDelegate;
 import com.example.latte_core.ui.recycler.BaseDecoration;
 import com.example.latte_core.ui.refresh.RefreshHandler;
+import com.example.latte_core.util.callback.CallbackManager;
+import com.example.latte_core.util.callback.CallbackType;
+import com.example.latte_core.util.callback.IGlobalCallback;
+import com.example.latte_core.util.toast.ToastUtil;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -26,7 +32,7 @@ import butterknife.OnClick;
  * 时间：2019/6/5
  * 描述：
  */
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
     @BindView(R2.id.rv_index)
     RecyclerView rvIndex;
     @BindView(R2.id.srl_index)
@@ -48,8 +54,10 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @OnClick(R2.id.icon_index_scan)
     void onClickScanQrCode(){
+        startScanWithCheck(getparentDelegate());
 
     }
+
 
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
@@ -57,6 +65,15 @@ public class IndexDelegate extends BottomItemDelegate {
         mRefreshHandler = RefreshHandler.create(srlIndex,rvIndex,new IndexDataConverter());
         //toolbar状态改变不会影响其它页面的toolbar
         tbIndex.getBackground().mutate();
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@NonNull String args) {
+                        ToastUtil.showText(args);
+                    }
+                });
+
+        etSearchView.setOnFocusChangeListener(this);
 
     }
 
@@ -93,6 +110,10 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
 
-
-
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+            getparentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
+    }
 }

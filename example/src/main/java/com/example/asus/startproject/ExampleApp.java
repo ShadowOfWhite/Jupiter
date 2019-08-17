@@ -3,6 +3,7 @@ package com.example.asus.startproject;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
+import com.example.asus.startproject.event.ShareEvent;
 import com.example.latte.ec.database.DatabaseManager;
 import com.example.latte.ec.icon.FontEcModule;
 import com.example.latte_core.app.Latte;
@@ -37,6 +38,7 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor("debug",R.raw.text))
                 .withJavascriptInterface("latte")
                 .withWebEvent("test",new TestEvent())
+                .withWebEvent("share",new ShareEvent())
                 //添加Cookie同步拦截器
                 .withInterceptor(new AddCookieInterceptor())
                 .withWebHost("https://www.baidu.com/")

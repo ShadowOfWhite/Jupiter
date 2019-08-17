@@ -3,6 +3,7 @@ package com.example.latte_core.ui.scanner;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 /**
@@ -20,7 +21,9 @@ public class ScanView extends ZBarScannerView {
         super(context, attributeSet);
     }
 
-
-
-
+    //返回中间的扫描框
+    @Override
+    protected IViewFinder createViewFinderView(Context context) {
+        return new LatteViewFinderView(context);
+    }
 }

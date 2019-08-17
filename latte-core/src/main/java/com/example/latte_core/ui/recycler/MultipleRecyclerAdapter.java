@@ -1,6 +1,7 @@
 package com.example.latte_core.ui.recycler;
 
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +16,7 @@ import com.example.latte_core.R;
 import com.example.latte_core.app.Latte;
 import com.example.latte_core.ui.banner.BannerCreator;
 import com.example.latte_core.util.log.LatteLogger;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +72,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
+
 
         final String text;
         final String imageUrl;
