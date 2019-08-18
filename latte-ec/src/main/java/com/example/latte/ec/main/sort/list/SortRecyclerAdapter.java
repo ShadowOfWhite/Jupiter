@@ -6,9 +6,9 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.example.latte.ec.R;
-import com.example.latte.ec.main.sort.SortDelegate;
-import com.example.latte.ec.main.sort.content.ContentDelegate;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte.ec.main.sort.SortFragment;
+import com.example.latte.ec.main.sort.content.ContentFragment;
+import com.example.latte_core.fragments.LatteFragment;
 import com.example.latte_core.ui.recycler.ItemType;
 import com.example.latte_core.ui.recycler.MultipleFields;
 import com.example.latte_core.ui.recycler.MultipleItemEntity;
@@ -26,11 +26,11 @@ import me.yokeyword.fragmentation.SupportHelper;
  */
 public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
-    private final SortDelegate DELEGATE;
+    private final SortFragment DELEGATE;
     private int mPrePositon = 0 ;
 
 
-    protected SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
+    protected SortRecyclerAdapter(List<MultipleItemEntity> data, SortFragment delegate) {
         super(data);
         DELEGATE = delegate;
         //添加垂直菜单布局
@@ -89,13 +89,13 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void showContent(int contentId){
-        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+        final ContentFragment delegate = ContentFragment.newInstance(contentId);
         switchContent(delegate);
     }
 
-    private void switchContent(ContentDelegate delegate){
-        final LatteDelegate contentDelegate =
-                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(),ContentDelegate.class);
+    private void switchContent(ContentFragment delegate){
+        final LatteFragment contentDelegate =
+                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(),ContentFragment.class);
         if (contentDelegate != null){
             contentDelegate.getSupportDelegate().replaceFragment(delegate,false);//false:不需要加入返回栈
         }

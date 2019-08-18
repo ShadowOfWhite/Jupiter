@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.latte.ec.R;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 
 /**
  * 作者：贪欢
@@ -26,12 +26,12 @@ public class FastPay implements View.OnClickListener{
     private AlertDialog mDialog = null;
     private int mOrderID = -1;
 
-    private FastPay(LatteDelegate delegate){
+    private FastPay(LatteFragment delegate){
         this.mActivity = delegate.getProxyActivity();
         this.mDialog = new AlertDialog.Builder(delegate.getContext()).create();
     }
 
-    public static FastPay create(LatteDelegate delegate){
+    public static FastPay create(LatteFragment delegate){
 
         return new FastPay(delegate);
     }

@@ -2,7 +2,7 @@ package com.example.latte_core.ui.camera;
 
 import android.net.Uri;
 
-import com.example.latte_core.delegates.PermissionCheckDelegate;
+import com.example.latte_core.fragments.PermissionCheckFragment;
 import com.example.latte_core.util.file.FileUtil;
 
 /**
@@ -19,7 +19,7 @@ public class LatteCamera {
                         FileUtil.getFileNameByTime("IMG","jpg")).getPath());
     }
 
-    public static void start(PermissionCheckDelegate delegate){
+    public static void start(PermissionCheckFragment delegate){
         new CameraHandler(delegate).beginCameraDialog();
     }
 }

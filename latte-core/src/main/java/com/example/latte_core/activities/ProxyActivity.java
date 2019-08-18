@@ -1,17 +1,15 @@
 package com.example.latte_core.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
 
 import com.example.latte_core.R;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
-import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportActivityDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
@@ -24,7 +22,7 @@ public abstract class  ProxyActivity extends AppCompatActivity implements ISuppo
 
     private final SupportActivityDelegate DELEGATE = new SupportActivityDelegate(this);
 
-    public abstract LatteDelegate setRootDelegate();
+    public abstract LatteFragment setRootDelegate();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

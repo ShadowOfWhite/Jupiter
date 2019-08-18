@@ -12,16 +12,16 @@ import com.chad.library.adapter.base.listener.SimpleClickListener;
  */
 public class OrederListClickListener extends SimpleClickListener {
 
-    private final OrderListDelegate DELEGATE;
+    private final OrderListFragment DELEGATE;
 
-    public OrederListClickListener(OrderListDelegate DELEGATE) {
+    public OrederListClickListener(OrderListFragment DELEGATE) {
         this.DELEGATE = DELEGATE;
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
-        DELEGATE.getSupportDelegate().start(new OrderCommentDelegate());
+        DELEGATE.getSupportDelegate().start(new OrderCommentFragment());
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.example.asus.startproject.event;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.example.latte_core.delegates.web.event.Event;
+import com.example.latte_core.fragments.web.event.Event;
 
 /**
  * 作者：贪欢

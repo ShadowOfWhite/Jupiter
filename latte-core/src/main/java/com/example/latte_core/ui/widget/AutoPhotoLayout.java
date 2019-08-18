@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.latte_core.R;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class AutoPhotoLayout extends LinearLayoutCompat {
     private int mDeleteId = 0;
     private AppCompatImageView mTargetImageView = null;
     private int mImageMargin = 0;
-    private LatteDelegate mDelegate = null;
+    private LatteFragment mDelegate = null;
     private List<View> mLineViews = null;
     private AlertDialog mTargetDialog = null;
     private final String ICON_TEXT = "{fa-plus}";
@@ -235,7 +235,7 @@ public class AutoPhotoLayout extends LinearLayoutCompat {
         mTargetDialog = new AlertDialog.Builder(getContext()).create();
     }
 
-    public final void setDelegate(LatteDelegate delegate){
+    public final void setDelegate(LatteFragment delegate){
         this.mDelegate = delegate;
     }
 

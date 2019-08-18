@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.latte.ec.R;
 import com.example.latte.ec.main.personal.list.ListBean;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 import com.example.latte_core.net.RestClient;
 import com.example.latte_core.net.callback.ISuccess;
 import com.example.latte_core.ui.date.DateDialogUtil;
@@ -27,10 +27,10 @@ import com.example.latte_core.util.callback.IGlobalCallback;
  */
 public class UserPfoflieClickListener extends SimpleClickListener {
 
-    private final LatteDelegate DELEGATE;
+    private final LatteFragment DELEGATE;
     private String[] mGenders = new String[]{"男","女","保密"};
 
-    public UserPfoflieClickListener(LatteDelegate DELEGATE) {
+    public UserPfoflieClickListener(LatteFragment DELEGATE) {
         this.DELEGATE = DELEGATE;
     }
 

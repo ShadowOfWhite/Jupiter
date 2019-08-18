@@ -5,7 +5,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.latte.ec.main.personal.list.ListBean;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 
 /**
  * 作者：贪欢
@@ -14,9 +14,9 @@ import com.example.latte_core.delegates.LatteDelegate;
  */
 public class SettingsClickListener extends SimpleClickListener {
 
-    private final LatteDelegate DELEGATE;
+    private final LatteFragment DELEGATE;
 
-    public SettingsClickListener(LatteDelegate delegate) {
+    public SettingsClickListener(LatteFragment delegate) {
         this.DELEGATE = delegate;
     }
 

@@ -1,5 +1,7 @@
 package com.example.latte_core.ui.recycler;
 
+import android.support.annotation.StringDef;
+
 import java.util.ArrayList;
 
 /**
@@ -14,7 +16,7 @@ public abstract class DataConverter {
 
     public abstract ArrayList<MultipleItemEntity> convert();
 
-    public DataConverter setJsonData(String json){
+    public DataConverter setJsonData( String json){
         this.mJsonData = json;
         return this;
     }

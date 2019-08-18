@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.os.Handler;
 
 import com.blankj.utilcode.util.Utils;
-import com.example.latte_core.delegates.web.event.Event;
-import com.example.latte_core.delegates.web.event.EventManager;
+import com.example.latte_core.fragments.web.event.Event;
+import com.example.latte_core.fragments.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.WeakHashMap;
 
 import okhttp3.Interceptor;
 
@@ -52,8 +51,18 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(),true);
     }
 
-    public final Configurator withApiHost(String host){
-        LATTE_CONFIGS.put(ConfigType.API_HOST.name(),host);
+    public final Configurator withNativeApiHost(String host){
+        LATTE_CONFIGS.put(ConfigType.NATIVE_API_HOST.name(),host);
+        return this;
+    }
+
+    public final Configurator withWebApiHost(String host){
+        //只留下域名，否则无法同步cookie，不能带http://或末尾的/
+        String hostName = host
+                .replace("http://","")
+                .replace("https://","");
+        hostName = hostName.substring(0,hostName.lastIndexOf('/'));
+        LATTE_CONFIGS.put(ConfigType.WEB_API_HOST.name(),hostName);
         return this;
     }
 

@@ -32,7 +32,7 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                .withApiHost("http://mock.fulingjie.com/mock-android/api/")
+                .withNativeApiHost("http://mock.fulingjie.com/mock-android/api/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withInterceptor(new DebugInterceptor("debug",R.raw.text))

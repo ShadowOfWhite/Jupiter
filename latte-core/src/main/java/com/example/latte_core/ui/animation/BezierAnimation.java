@@ -5,12 +5,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ScreenUtils;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 
 
 public final class BezierAnimation {
 
-    public static void addCart(LatteDelegate delegate, View start, View end,
+    public static void addCart(LatteFragment delegate, View start, View end,
                                ImageView target, BezierUtil.AnimationListener animationListener) {
         /* 起点 */
         final  int[] startXY = new int[2];

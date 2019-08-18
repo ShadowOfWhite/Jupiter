@@ -2,7 +2,7 @@ package com.example.asus.startproject.event;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.latte_core.delegates.web.event.Event;
+import com.example.latte_core.fragments.web.event.Event;
 
 /**
  * 作者：贪欢

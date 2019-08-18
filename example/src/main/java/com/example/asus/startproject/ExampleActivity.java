@@ -1,26 +1,17 @@
 package com.example.asus.startproject;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.latte.ec.launcher.LauncherDelegate;
-import com.example.latte.ec.launcher.LauncherScrollDelegate;
-import com.example.latte.ec.main.EcBottomDelegate;
+import com.example.latte.ec.launcher.LauncherFragment;
+import com.example.latte.ec.main.EcBottomFragment;
 import com.example.latte.ec.sign.ISignListener;
-import com.example.latte.ec.sign.SignInDelegate;
-import com.example.latte.ec.sign.SignUpDelegate;
+import com.example.latte.ec.sign.SignInFragment;
 import com.example.latte_core.activities.ProxyActivity;
 import com.example.latte_core.app.Latte;
-import com.example.latte_core.delegates.LatteDelegate;
+import com.example.latte_core.fragments.LatteFragment;
 import com.example.latte_core.ui.launcher.ILauncherListener;
 import com.example.latte_core.ui.launcher.OnLauncherFinishTag;
 
@@ -44,8 +35,8 @@ public class ExampleActivity extends ProxyActivity implements
     }
 
     @Override
-    public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+    public LatteFragment setRootDelegate() {
+        return WebExampleFragment.create(Config.INDEX_URL);
     }
 
     @Override
@@ -75,12 +66,12 @@ public class ExampleActivity extends ProxyActivity implements
         switch (tag){
             case SIGNED:
 //                Toast.makeText(this,"启动结束，用户登录了",Toast.LENGTH_SHORT).show();
-                getSupportDelegate().startWithPop(new EcBottomDelegate());
+                getSupportDelegate().startWithPop(new EcBottomFragment());
                 break;
             case NOT_SIGNED:
 
                 Toast.makeText(this,"启动结束，用户没登录",Toast.LENGTH_SHORT).show();
-                getSupportDelegate().startWithPop(new SignInDelegate());
+                getSupportDelegate().startWithPop(new SignInFragment());
                 break;
                 default:
                     break;

@@ -2,7 +2,6 @@ package com.example.latte_core.ui.camera;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,7 +15,7 @@ import android.view.WindowManager;
 
 import com.blankj.utilcode.util.FileUtils;
 import com.example.latte_core.R;
-import com.example.latte_core.delegates.PermissionCheckDelegate;
+import com.example.latte_core.fragments.PermissionCheckFragment;
 import com.example.latte_core.util.file.FileUtil;
 
 
@@ -31,9 +30,9 @@ import java.io.File;
 public class CameraHandler implements View.OnClickListener {
 
     private final AlertDialog DIALOG;
-    private final PermissionCheckDelegate DELEGATE;
+    private final PermissionCheckFragment DELEGATE;
 
-    public CameraHandler( PermissionCheckDelegate delegate) {
+    public CameraHandler( PermissionCheckFragment delegate) {
         this.DELEGATE = delegate;
         DIALOG = new AlertDialog.Builder(delegate.getContext()).create();
     }

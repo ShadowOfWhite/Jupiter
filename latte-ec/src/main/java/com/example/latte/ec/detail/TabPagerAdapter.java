@@ -49,9 +49,9 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
         ToastUtil.showText("当前："+position);
         if (position == 0){
-            return ImageDelegate.create(PICTURE.get(0));
+            return ImageFragment.create(PICTURE.get(0));
         }else if (position == 1){
-            return ImageDelegate.create(PICTURE.get(1));
+            return ImageFragment.create(PICTURE.get(1));
         }
         return null;
     }
