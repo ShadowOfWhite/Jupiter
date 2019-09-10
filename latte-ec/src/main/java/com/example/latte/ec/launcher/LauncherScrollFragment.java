@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * 作者：贪欢
  * 时间：2019/5/24
- * 描述：
+ * 描述：第一次进来，概览页面
  */
 public class LauncherScrollFragment extends LatteFragment implements OnItemClickListener {
 

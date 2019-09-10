@@ -1,6 +1,6 @@
 package com.example.latte_core.app;
 
-import android.support.annotation.StringDef;
+
 
 /**
  * Created by 杨淋 on 2018/4/24.

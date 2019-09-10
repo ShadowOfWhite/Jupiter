@@ -71,7 +71,7 @@ public class LauncherFragment extends LatteFragment implements ITimerListener {
      */
     private void checkIsShowScroll(){
         if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
-            start(new LauncherScrollFragment(),SINGLETASK);
+            getSupportDelegate().startWithPop(new LauncherScrollFragment());
         }else {
             //检查用户是否登录了APP
             AccountManager.checkAccount(new IUserChecker() {

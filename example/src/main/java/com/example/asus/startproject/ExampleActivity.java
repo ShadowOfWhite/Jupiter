@@ -3,6 +3,7 @@ package com.example.asus.startproject;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.latte.ec.launcher.LauncherFragment;
@@ -36,7 +37,8 @@ public class ExampleActivity extends ProxyActivity implements
 
     @Override
     public LatteFragment setRootDelegate() {
-        return WebExampleFragment.create(Config.INDEX_URL);
+//        return WebExampleFragment.create(Config.INDEX_URL);
+        return new LauncherFragment();
     }
 
     @Override
@@ -78,6 +80,12 @@ public class ExampleActivity extends ProxyActivity implements
         }
     }
 
+
+    @Override
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
+        Log.e("测试", "onBackPressedSupport: 进入活动" );
+    }
 
 }
 

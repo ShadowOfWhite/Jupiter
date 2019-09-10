@@ -1,5 +1,6 @@
 package com.example.latte_core.fragments.bottom;
 
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -20,6 +21,7 @@ public abstract class BottomItemFragment extends LatteFragment {
 
     @Override
     public boolean onBackPressedSupport() {
+        Log.e("测试", "onBackPressedSupport: 22222" );
         if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
             _mActivity.finish();
         } else {

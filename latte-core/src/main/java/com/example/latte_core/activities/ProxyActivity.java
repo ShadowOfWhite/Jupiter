@@ -1,9 +1,11 @@
 package com.example.latte_core.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
+import android.util.Log;
 
 import com.example.latte_core.R;
 import com.example.latte_core.fragments.LatteFragment;
@@ -32,7 +34,7 @@ public abstract class  ProxyActivity extends AppCompatActivity implements ISuppo
     }
 
     private void initContainer(@Nullable Bundle savedInstanceState){
-        final ContentFrameLayout container = new ContentFrameLayout(this);
+        @SuppressLint("RestrictedApi") final ContentFrameLayout container = new ContentFrameLayout(this);
         container.setId(R.id.delegate_container);
         setContentView(container);
         if (savedInstanceState == null){
@@ -81,6 +83,13 @@ public abstract class  ProxyActivity extends AppCompatActivity implements ISuppo
 
     @Override
     public void onBackPressedSupport() {
+        Log.e("测试", "333333: 进入活动" );
         DELEGATE.onBackPressedSupport();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DELEGATE.onBackPressed();
     }
 }
