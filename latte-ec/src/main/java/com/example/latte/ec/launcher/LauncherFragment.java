@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte_core.app.AccountManager;

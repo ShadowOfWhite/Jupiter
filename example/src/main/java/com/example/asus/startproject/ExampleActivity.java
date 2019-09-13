@@ -67,7 +67,7 @@ public class ExampleActivity extends ProxyActivity implements
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag){
             case SIGNED:
-//                Toast.makeText(this,"启动结束，用户登录了",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"启动结束，用户登录了",Toast.LENGTH_SHORT).show();
                 getSupportDelegate().startWithPop(new EcBottomFragment());
                 break;
             case NOT_SIGNED:

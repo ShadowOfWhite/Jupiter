@@ -19,6 +19,7 @@ import butterknife.Unbinder;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;
+import me.yokeyword.fragmentation.SupportHelper;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 
@@ -43,6 +44,8 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
      @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
         View rootView = null;
         if (setLayout() instanceof Integer){
             rootView = inflater.inflate((Integer) setLayout(),container,false);
@@ -231,5 +234,36 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
         DELEGATE.start(toFragment, launchMode);
     }
 
+    /**
+     * 得到位于栈顶Fragment
+     */
+    public ISupportFragment getTopFragment() {
+        return SupportHelper.getTopFragment(getFragmentManager());
+    }
+
+    public ISupportFragment getTopChildFragment() {
+        return SupportHelper.getTopFragment(getChildFragmentManager());
+    }
+
+    /**
+     * @return 位于当前Fragment的前一个Fragment
+     */
+    public ISupportFragment getPreFragment() {
+        return SupportHelper.getPreFragment(this);
+    }
+
+    /**
+     * 获取栈内的fragment对象
+     */
+    public <T extends ISupportFragment> T findFragment(Class<T> fragmentClass) {
+        return SupportHelper.findFragment(getFragmentManager(), fragmentClass);
+    }
+
+    /**
+     * 获取栈内的fragment对象
+     */
+    public <T extends ISupportFragment> T findChildFragment(Class<T> fragmentClass) {
+        return SupportHelper.findFragment(getChildFragmentManager(), fragmentClass);
+    }
 
 }

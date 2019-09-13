@@ -87,6 +87,13 @@ public abstract class  ProxyActivity extends AppCompatActivity implements ISuppo
         DELEGATE.onBackPressedSupport();
     }
 
+    //之前悬浮球不显示就是因为没实现这个方法
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        DELEGATE.onPostCreate(savedInstanceState);
+    }
+
 
     @Override
     public void onBackPressed() {

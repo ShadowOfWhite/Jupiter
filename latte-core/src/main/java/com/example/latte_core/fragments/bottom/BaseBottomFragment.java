@@ -20,7 +20,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.ISupportFragment;
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * 作者：贪欢
@@ -99,8 +101,10 @@ public abstract class BaseBottomFragment extends LatteFragment implements View.O
 
         }
 
-        ISupportFragment[] delagateArray =  ITEM_DELEGATES.toArray(new ISupportFragment[size]);
-        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delagateArray);
+            ISupportFragment[] delagateArray =  ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+            getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delagateArray);
+
+
     }
 
     private void resetColor(){
@@ -111,8 +115,6 @@ public abstract class BaseBottomFragment extends LatteFragment implements View.O
             AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
             itemIcon.setTextColor(Color.GRAY);
             itemTitle.setTextColor(Color.GRAY);
-
-
         }
     }
 
@@ -128,5 +130,8 @@ public abstract class BaseBottomFragment extends LatteFragment implements View.O
 
         getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag),ITEM_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
+
+        // 查看栈视图Dialog
+//        SupportHelper.showFragmentStackHierarchyView((ISupportActivity) _mActivity);
     }
 }
