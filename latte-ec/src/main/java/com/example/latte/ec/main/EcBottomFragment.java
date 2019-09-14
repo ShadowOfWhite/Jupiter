@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 public class EcBottomFragment extends BaseBottomFragment {
 
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

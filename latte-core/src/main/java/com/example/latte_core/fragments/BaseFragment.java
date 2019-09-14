@@ -2,6 +2,7 @@ package com.example.latte_core.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.Button;
 
 import com.example.latte_core.activities.ProxyActivity;
+import com.example.latte_core.fragments.bottom.BaseBottomFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -33,57 +36,10 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
 
     protected FragmentActivity _mActivity = null;
+    private static final String TAG = "BaseFragment";
 
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
-
-    public abstract Object setLayout();
-
-    protected abstract void onBindView(Bundle savedInstanceState, View rootView);
-
-     @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-        View rootView = null;
-        if (setLayout() instanceof Integer){
-            rootView = inflater.inflate((Integer) setLayout(),container,false);
-        }else if (setLayout() instanceof View){
-            rootView = (View) setLayout();
-        }else {
-            throw new ClassCastException("setLayout 转换异常");
-        }
-        if (rootView != null){
-            mUnbinder = ButterKnife.bind(this,rootView);
-            onBindView(savedInstanceState,rootView);
-        }
-        return rootView;
-    }
-
-    public final ProxyActivity getProxyActivity(){
-         return (ProxyActivity) _mActivity;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mUnbinder != null){
-            mUnbinder.unbind();
-        }
-        DELEGATE.onDestroy();
-    }
-
-
-    @Override
-    public SupportFragmentDelegate getSupportDelegate() {
-        return DELEGATE;
-    }
-
-    @Override
-    public ExtraTransaction extraTransaction() {
-        return DELEGATE.extraTransaction();
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -96,23 +52,44 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DELEGATE.onCreate(savedInstanceState);
+
     }
 
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-        return DELEGATE.onCreateAnimation(transit, enter, nextAnim);
-    }
+    @Nullable
+   @Override
+   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+       View rootView = null;
+       if (setLayout() instanceof Integer){
+           rootView = inflater.inflate((Integer) setLayout(),container,false);
+       }else if (setLayout() instanceof View){
+           rootView = (View) setLayout();
+       }else {
+           throw new ClassCastException("setLayout 转换异常");
+       }
+       if (rootView != null){
+           mUnbinder = ButterKnife.bind(this,rootView);
+           onBindView(savedInstanceState,rootView);
+       }
+       return rootView;
+   }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         DELEGATE.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        DELEGATE.onSaveInstanceState(outState);
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -133,6 +110,47 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
         super.onDestroyView();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null){
+            mUnbinder.unbind();
+        }
+        DELEGATE.onDestroy();
+    }
+
+
+
+
+    public abstract Object setLayout();
+
+    protected abstract void onBindView(Bundle savedInstanceState, View rootView);
+
+    public final ProxyActivity getProxyActivity(){
+         return (ProxyActivity) _mActivity;
+    }
+
+
+    @Override
+    public SupportFragmentDelegate getSupportDelegate() {
+        return DELEGATE;
+    }
+
+    @Override
+    public ExtraTransaction extraTransaction() {
+        return DELEGATE.extraTransaction();
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return DELEGATE.onCreateAnimation(transit, enter, nextAnim);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        DELEGATE.onSaveInstanceState(outState);
+    }
 
 
     @Override
@@ -216,6 +234,9 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
     }
 
 
+    public void start(ISupportFragment toFragment) {
+        DELEGATE.start(toFragment);
+    }
     @Override
     public void onNewBundle(Bundle args) {
         DELEGATE.onNewBundle(args);
@@ -226,9 +247,6 @@ public abstract class BaseFragment extends Fragment implements ISupportFragment 
         DELEGATE.putNewBundle(newBundle);
     }
 
-    public void start(ISupportFragment toFragment) {
-        DELEGATE.start(toFragment);
-    }
 
     public void start(final ISupportFragment toFragment, @LaunchMode int launchMode) {
         DELEGATE.start(toFragment, launchMode);
